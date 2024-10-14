@@ -1,0 +1,21 @@
+<p-dialog
+  header="Header"
+  [(visible)]="showModal"
+  [modal]="true"
+  [style]="{ width: '70vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <ng-template pTemplate="content">
+    
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <p-button
+      icon="pi pi-check"
+      (click)="showModal = false"
+      label="Ok"
+      styleClass="p-button-text"
+    ></p-button>
+    <p-button label="Save" />
+  </ng-template>
+</p-dialog>

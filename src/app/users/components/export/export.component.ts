@@ -12,10 +12,7 @@ export class ExportComponent {
   export() {
     const table = this.usersService.getTable();
     
-    if (table) {
+    if (table) 
       table.exportCSV();
-    } else {
-      console.error('Table reference is not set.');
-    }
   }
 }

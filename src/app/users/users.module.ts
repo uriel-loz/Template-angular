@@ -7,9 +7,11 @@ import { TableComponent } from './components/table/table.component';
 import {CardModule} from 'primeng/card';
 import { ToolbarModule } from 'primeng/toolbar';
 import {ButtonModule} from 'primeng/button';
+import {DialogModule} from 'primeng/dialog';
 import { CreateComponent } from './components/create/create.component';
 import { ExportComponent } from './components/export/export.component';
 import { RefreshComponent } from './components/refresh/refresh.component';
+import { FormCreateComponent } from './components/form-create/form-create.component';
 
 @NgModule({
   imports: [
@@ -18,12 +20,14 @@ import { RefreshComponent } from './components/refresh/refresh.component';
     TableModule,
     CardModule,
     ToolbarModule,
-    ButtonModule
+    ButtonModule,
+    DialogModule
   ],
   declarations: [
     UsersComponent,
     TableComponent,
     CreateComponent,
+    FormCreateComponent,
     ExportComponent,
     RefreshComponent
   ]
