@@ -18,8 +18,4 @@ export class ExportComponent {
       console.error('Table reference is not set.');
     }
   }
-
-  isTableReady(): boolean {
-    return this.usersService.getTable() !== null;
-  }
 }

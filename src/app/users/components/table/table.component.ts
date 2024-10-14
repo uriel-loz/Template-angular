@@ -4,6 +4,11 @@ import { User } from '../../interfaces/users.interface';
 import { Table } from 'primeng/table';
 import { UsersService } from '../../services/users.service';
 
+type ColumnDefinition = {
+  field: string;
+  header: string;
+};
+
 @Component({
   selector: 'users-table',
   templateUrl: './table.component.html',
@@ -20,7 +25,13 @@ export class TableComponent implements OnInit, AfterViewInit {
   public totalRecords: number = 0;
   public sortField: string = 'id';
   public sortOrder: number = -1;
-  @ViewChild('dt') table!: Table;
+  @ViewChild('dataTable') table!: Table;
+  public columns: ColumnDefinition[] = [
+    { field: 'id', header: 'ID' },
+    { field: 'name', header: 'Name' },
+    { field: 'last_name', header: 'Last name' },
+    { field: 'email', header: 'Email' },
+  ];
 
   ngOnInit() {
     this.apiService.getUsers()
