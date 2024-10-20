@@ -7,15 +7,38 @@
   [resizable]="false"
 >
   <ng-template pTemplate="content">
-    
+    <h5>General data</h5>
+    <form [formGroup]="form" (onClick)="onSubmit()">
+      <div class="grid p-fluid">
+        <div class="col-12 md:col-4">
+          <p-floatLabel>
+            <input id="name" type="text" pInputText formControlName="name"/>
+            <label for="name">Name:</label>
+          </p-floatLabel>
+        </div>
+
+        <div class="col-12 md:col-4">
+          <p-floatLabel>
+            <input id="last-name" type="text" pInputText formControlName="last_name" />
+            <label for="last-name">Last name:</label>
+          </p-floatLabel>
+        </div>
+
+        <div class="col-12 md:col-4">
+          <p-floatLabel>
+            <input id="email" type="email" pInputText formControlName="email" />
+            <label for="email">Email:</label>
+          </p-floatLabel>
+        </div>
+      </div>
+    </form>
   </ng-template>
   <ng-template pTemplate="footer">
     <p-button
-      icon="pi pi-check"
       (click)="showModal = false"
-      label="Ok"
-      styleClass="p-button-text"
+      label="Close"
+      severity="secondary"
     ></p-button>
-    <p-button label="Save" />
+    <p-button label="Save" (onClick)="onSubmit()"/>
   </ng-template>
 </p-dialog>

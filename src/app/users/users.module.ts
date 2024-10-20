@@ -12,6 +12,10 @@ import { CreateComponent } from './components/create/create.component';
 import { ExportComponent } from './components/export/export.component';
 import { RefreshComponent } from './components/refresh/refresh.component';
 import { FormCreateComponent } from './components/form-create/form-create.component';
+import {InputTextModule} from 'primeng/inputtext';
+import { RippleModule } from 'primeng/ripple';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -21,7 +25,11 @@ import { FormCreateComponent } from './components/form-create/form-create.compon
     CardModule,
     ToolbarModule,
     ButtonModule,
-    DialogModule
+    DialogModule,
+    InputTextModule,
+    RippleModule,
+    FloatLabelModule,
+    ReactiveFormsModule
   ],
   declarations: [
     UsersComponent,
