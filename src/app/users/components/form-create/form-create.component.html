@@ -12,33 +12,58 @@
       <div class="grid p-fluid">
         <div class="col-12 md:col-4">
           <p-floatLabel>
-            <input id="name" type="text" pInputText formControlName="name"/>
+            <input
+              id="name"
+              [ngClass]="{ 'ng-invalid ng-dirty': isValidField('name') }"
+              type="text"
+              pInputText
+              formControlName="name"
+            />
             <label for="name">Name:</label>
           </p-floatLabel>
+          <small *ngIf="isValidField('name')">
+            {{ getFieldError('name') }}
+          </small>
         </div>
-
         <div class="col-12 md:col-4">
           <p-floatLabel>
-            <input id="last-name" type="text" pInputText formControlName="last_name" />
+            <input
+              id="last-name"
+              [ngClass]="{ 'ng-invalid ng-dirty': isValidField('last_name') }"
+              type="text"
+              pInputText
+              formControlName="last_name"
+            />
             <label for="last-name">Last name:</label>
           </p-floatLabel>
+          <small *ngIf="isValidField('last_name')">
+            {{ getFieldError('last_name') }}
+          </small>
         </div>
-
         <div class="col-12 md:col-4">
           <p-floatLabel>
-            <input id="email" type="email" pInputText formControlName="email" />
+            <input
+              id="email"
+              [ngClass]="{ 'ng-invalid ng-dirty': isValidField('email') }"
+              type="email"
+              pInputText
+              formControlName="email"
+            />
             <label for="email">Email:</label>
           </p-floatLabel>
+          <small *ngIf="isValidField('email')">
+            {{ getFieldError('email') }}
+          </small>
         </div>
       </div>
     </form>
   </ng-template>
   <ng-template pTemplate="footer">
     <p-button
-      (click)="showModal = false"
+      (click)="onClose()"
       label="Close"
       severity="secondary"
     ></p-button>
-    <p-button label="Save" (onClick)="onSubmit()"/>
+    <p-button label="Save" (onClick)="onSubmit()" />
   </ng-template>
 </p-dialog>

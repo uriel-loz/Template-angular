@@ -17,9 +17,39 @@ export class FormCreateComponent implements OnInit{
     email: ['', [Validators.required, Validators.email]]
   });
 
+  onClose(): void {
+    this.form.reset();
+    this.showModal = false;
+  }
+
   onSubmit() {
-    console.log(this.form.value);
-    
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+
+      return;
+    }
+  }
+
+  isValidField(field: string): boolean | null {
+    return this.form.controls[field].errors && this.form.controls[field].touched;
+  }
+
+  getFieldError(field: string): string | null {
+    if (!this.form.controls[field]) return null; 
+
+    const errors = this.form.controls[field].errors || {};
+
+    for (const key of Object.keys(errors)) {
+      if (key === 'required') {
+        return 'This field is required';
+      }
+
+      if (key === 'email') {
+        return 'This field must be a valid email';
+      }
+    }
+
+    return '';
   }
 
   ngOnInit(): void {
