@@ -1,18 +1,23 @@
 <p-table
     [columns]="columns"
-    [value]="users"
+    [customSort]="true"
+    [lazy]="true"
+    [loading]="loading"
+    (onLazyLoad)="loadUsers($event)"
     [paginator]="true"
-    styleClass="p-datatable-striped "
-    [tableStyle]="{ 'min-width': '50rem' }"
     [rows]="rows"
-    [rowsPerPageOptions]="rowsOptions"
+    [rowsPerPageOptions]="[5, 10, 20, 50, { showAll: 'All' }]"
     [showCurrentPageReport]="true"
     [sortField]="sortField" 
     [sortOrder]="sortOrder"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [customSort]="true"
-    selectionMode="single"
+    [totalRecords]="totalRecords"
+    sortMode="multiple"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [value]="users"
     #dataTable
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    selectionMode="single"
+    styleClass="p-datatable-striped"
 >
     <ng-template pTemplate="header">
         <tr>

@@ -29,3 +29,7 @@ export interface Link {
     label:  string;
     active: boolean;
 }
+
+export interface Filter {
+    [key: string]: number | string | boolean;
+}
