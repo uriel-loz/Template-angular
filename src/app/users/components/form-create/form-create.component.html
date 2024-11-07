@@ -10,8 +10,8 @@
   <ng-template pTemplate="content">
     <h5>General data</h5>
     <form [formGroup]="form" (onClick)="onSubmit()">
-      <div class="grid p-fluid">
-        <div class="col-12 md:col-4">
+      <div class="grid p-fluid mb-3">
+        <div class="col-12 md:col-6">
           <p-floatLabel>
             <input
               id="name"
@@ -20,13 +20,13 @@
               pInputText
               formControlName="name"
             />
-            <label for="name">Name:</label>
+            <label for="name">Name: <strong>*</strong></label>
           </p-floatLabel>
           <small *ngIf="isValidField('name')">
             {{ getFieldError('name') }}
           </small>
         </div>
-        <div class="col-12 md:col-4">
+        <div class="col-12 md:col-6">
           <p-floatLabel>
             <input
               id="last-name"
@@ -35,13 +35,15 @@
               pInputText
               formControlName="last_name"
             />
-            <label for="last-name">Last name:</label>
+            <label for="last-name">Last name: <strong>*</strong></label>
           </p-floatLabel>
           <small *ngIf="isValidField('last_name')">
             {{ getFieldError('last_name') }}
           </small>
         </div>
-        <div class="col-12 md:col-4">
+      </div>
+      <div class="grid p-fluid mb-3">
+        <div class="col-12 md:col-6">
           <p-floatLabel>
             <input
               id="email"
@@ -50,10 +52,25 @@
               pInputText
               formControlName="email"
             />
-            <label for="email">Email:</label>
+            <label for="email">Email: <strong>*</strong></label>
           </p-floatLabel>
           <small *ngIf="isValidField('email')">
             {{ getFieldError('email') }}
+          </small>
+        </div>
+        <div class="col-12 md:col-6">
+          <p-floatLabel>
+            <input
+              id="password"
+              [ngClass]="{ 'ng-invalid ng-dirty': isValidField('password') }"
+              type="password"
+              pInputText
+              formControlName="password"
+            />
+            <label for="password">Password: <strong>*</strong></label>
+          </p-floatLabel>
+          <small *ngIf="isValidField('password')">
+            {{ getFieldError('password') }}
           </small>
         </div>
       </div>
