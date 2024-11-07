@@ -27,6 +27,8 @@ export class TableComponent implements OnInit, AfterViewInit {
   public sortField: string = 'id';
   public sortOrder: number = -1;
   public loading: boolean = false;
+  public page: number = 1;
+  public size: number = 10;
   @ViewChild('dataTable') table!: Table;
   public columns: ColumnDefinition[] = [
     { field: 'id', header: 'ID' },
@@ -56,13 +58,13 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   loadUsers(event: TableLazyLoadEvent) {
-    const sortField: string | string [] = event.sortField || this.sortField;
-    const sortOrder: number = event.sortOrder || this.sortOrder;
-    const page: number = (event.first ?? 0) / (event.rows ?? 10) + 1;
-    const size: number = event.rows ?? 10;
+    this.sortField = typeof event.sortField === 'string' ? event.sortField : this.sortField;
+    this.sortOrder = event.sortOrder || this.sortOrder;
+    this.page = Math.floor((event.first ?? 0) / (event.rows ?? 10)) + 1;
+    this.size = event.rows ?? 10;
     const filters: Filter = this.getFilterParams(event.filters);
     
-    this.apiService.getUsers(sortField, sortOrder, page, size, filters)
+    this.apiService.getUsers(this.sortField, this.sortOrder, this.page, this.size, filters)
       .pipe(finalize(() => this.loading = false))
       .subscribe(({data, from, to, total}) => {
         this.users = data;
@@ -72,12 +74,30 @@ export class TableComponent implements OnInit, AfterViewInit {
       })
   }
 
+  refreshTable() {
+    if (!this.table) return;
+
+    this.loading = true;
+
+    // Reiniciar la paginación
+    this.first = 0;  // Este es el valor que controla la paginación
+    this.table.first = 0;  // Esto actualiza la UI de la tabla
+
+    this.loadUsers({
+      first: 0,  // Importante: aquí también debe ser 0 para la primera página
+      rows: this.rows,
+      sortField: this.sortField,
+      sortOrder: this.sortOrder,
+      filters: this.table.filters,
+    });
+  }
+
+
   ngOnInit() {
     this.loading = true;
-    // this.apiService.getUsers()
-    //   .subscribe(response => {
-    //     this.users = response.data;
-    //   });
+    this.usersService.refresh$.subscribe(()  => {
+      this.refreshTable();
+    });
   }
 
   ngAfterViewInit() {

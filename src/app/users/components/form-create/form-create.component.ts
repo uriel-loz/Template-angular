@@ -19,7 +19,7 @@ export class FormCreateComponent implements OnInit{
 
   onClose(): void {
     this.form.reset();
-    this.showModal = false;
+    this.userService.setModal(false);
   }
 
   onSubmit() {

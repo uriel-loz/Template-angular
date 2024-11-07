@@ -1,4 +1,6 @@
 <p-table
+    [first]="first"
+    [(first)]="first"
     [columns]="columns"
     [customSort]="true"
     [lazy]="true"
@@ -11,7 +13,7 @@
     [sortField]="sortField" 
     [sortOrder]="sortOrder"
     [totalRecords]="totalRecords"
-    sortMode="multiple"
+    sortMode="single"
     [tableStyle]="{ 'min-width': '50rem' }"
     [value]="users"
     #dataTable

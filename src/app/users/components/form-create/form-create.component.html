@@ -5,6 +5,7 @@
   [style]="{ width: '70vw' }"
   [draggable]="false"
   [resizable]="false"
+  (onHide)="onClose()"
 >
   <ng-template pTemplate="content">
     <h5>General data</h5>

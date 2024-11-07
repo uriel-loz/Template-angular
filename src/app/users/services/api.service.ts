@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, map, Observable, of } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
 import { Filter, Pagination, User } from '../interfaces/users.interface';
 
 @Injectable({
@@ -10,9 +10,9 @@ export class ApiService {
   private baseUrl: string = 'http://localhost:8000/api/users';
   private http = inject(HttpClient);
 
-  getUsers(sortField: string | string [], sortOrder: number, page: number, size: number, filters: Filter): Observable<Pagination> {
+  getUsers(sortField: string , sortOrder: number, page: number, size: number, filters: Filter): Observable<Pagination> {
     const params = new HttpParams()
-      .set('sort_field', Array.isArray(sortField) ? sortField.join(',') : sortField)
+      .set('sort_field', sortField)
       .set('page', page.toString())
       .set('size', size.toString())
       .set('order', sortOrder.toString())
