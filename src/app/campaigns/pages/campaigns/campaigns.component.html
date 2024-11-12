@@ -1,0 +1,16 @@
+<p-card header="Campaigns">
+  <p-toolbar styleClass="mb-4 gap-2">
+    <ng-template pTemplate="right">
+      <!-- <users-refresh />
+      <users-create /> -->
+      <shared-refresh />
+    </ng-template>
+    <ng-template pTemplate="left">
+      <shared-export />
+    </ng-template>
+  </p-toolbar>
+  <shared-table 
+    [columns]="columns"
+    [fetchData]="fetchCampaigns.bind(this)"
+  />
+</p-card>

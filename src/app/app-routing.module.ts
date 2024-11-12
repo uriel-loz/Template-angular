@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren: () => import('./users/users.module').then(m  =>  m.UsersModule)
   },
   {
+    path: 'campaigns',
+    loadChildren: ()  => import('./campaigns/campaigns.module').then(m  =>  m.CampaignsModule)
+  },
+  {
     path: '**',
     redirectTo: 'users'
   }

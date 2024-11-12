@@ -1,0 +1,47 @@
+<p-table
+    [(first)]="first"
+    [columns]="columns"
+    [customSort]="true"
+    [lazy]="true"
+    (onLazyLoad)="loadRegisters($event)"
+    [loading]="loading"
+    [paginator]="true"
+    [rows]="rows"
+    [rowsPerPageOptions]="[5, 10, 20, 50, { showAll: 'All' }]"
+    [showCurrentPageReport]="true"
+    [sortField]="sortField" 
+    [sortOrder]="sortOrder"
+    [totalRecords]="totalRecords"
+    sortMode="single"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [value]="data"
+    #dataTable
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    selectionMode="single"
+    styleClass="p-datatable-striped"
+>
+    <ng-template pTemplate="header">
+        <tr>
+            <th *ngFor="let column of columns" [pSortableColumn]="column.field" style="width:20%">
+                {{ column.header }} <p-sortIcon [field]="column.field" />
+            </th>
+        </tr>
+        <tr>
+            <th *ngFor="let column of columns">
+                <p-columnFilter 
+                    type="text" 
+                    [field]="column.field" 
+                    placeholder="Search by {{ column.header }}" 
+                    ariaLabel="Filter by {{ column.header }}" 
+                />
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            <td *ngFor="let col of columns">
+                {{ rowData[col.field] }}
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
