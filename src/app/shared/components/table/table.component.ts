@@ -64,6 +64,11 @@ export class TableComponent<T> implements OnInit, AfterViewInit {
       });
   }
 
+  refresh(): void {
+    this.loading = true;
+    this.table.reset();
+  }
+
   ngOnInit(): void {
     this.loading = true;
   }
